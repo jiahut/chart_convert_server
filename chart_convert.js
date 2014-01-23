@@ -8,7 +8,7 @@ var mapCLArguments = function () {
 		key;
 
 	if (system.args.length < 1) {
-		console.log('run PhantomJS as server: chart-convert.js -host 127.0.0.1 -port 9909');
+		console.log('run PhantomJS as server: chart-convert.js -host 0.0.0.0 -port 9909');
 	}
 
 	for (i = 0; i < system.args.length; i += 1) {
@@ -38,10 +38,10 @@ var chartConver  = function (host, port) {
 				msg;
 			try {
 				params = JSON.stringify(vo);
-				console.log(vo.filename);
+				console.log(params);
 				var url = "http://192.168.88.110:9297/#chart/" + vo.type;
-				console.log(url)
 				page.open(url, function (status) {
+					console.log(url + ' status:' + status);
 					if (params.status) {
 						// for server health validation
 						response.statusCode = 200;
@@ -82,7 +82,7 @@ var chartConver  = function (host, port) {
 						    svg = $("#chart").highcharts().getSVG();
 						  }
 						  $.ajax({
-							url: "http://192.168.88.103:8196/export/fromHighcharts",
+							url: "http://192.168.88.170:8196/export/fromHighcharts",
 							async: false,
 							method: 'POST',
 							data: { svg: svg,
@@ -108,8 +108,8 @@ var chartConver  = function (host, port) {
 }
 
 var map = mapCLArguments()
-for(k in map){
-	console.log(k, map[k])
-}
+//for(k in map){
+	//console.log(k, map[k])
+//}
 chartConver(map['host'],map["port"]);
 //phantom.exit();
