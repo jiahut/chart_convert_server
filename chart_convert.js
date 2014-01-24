@@ -82,7 +82,7 @@ var chartConver  = function (host, port) {
 						    svg = $("#chart").highcharts().getSVG();
 						  }
 						  $.ajax({
-							url: "http://192.168.88.170:8196/export/fromHighcharts",
+							url: json.url + "/fromHighcharts",
 							async: false,
 							method: 'POST',
 							data: { svg: svg,
