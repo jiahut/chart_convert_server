@@ -76,7 +76,7 @@ var chartConver  = function (host, port) {
 						  if(json.count === '3pie') {
 						    chart1 = $("#chart1").highcharts();
 							chart2 = $("#chart2").highcharts();
-							chart3 = $("#chart2").highcharts();
+							chart3 = $("#chart3").highcharts();
 							svg = window.Highcharts.getSVG([chart1,chart2,chart3]);
 						  } else {
 						    svg = $("#chart").highcharts().getSVG();
