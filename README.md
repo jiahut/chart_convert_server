@@ -10,3 +10,13 @@
 3. exec 
 
     phantomjs chart_convert.js -host 0.0.0.0 -p 9909
+
+### refactor
+
+1. add the node js
+
+2. cd `pwd`
+
+3. npm install
+
+4. coffee app.coffee
