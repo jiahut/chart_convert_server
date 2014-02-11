@@ -1,8 +1,14 @@
 module.exports = new class ChartConfigV2
-  pie3: [12,13]
-  getTypes: (chart_no) =>
-    if chart_no in @pie3
+
+  pie3: [12,13,15,16,64]
+
+  column2: [84]
+
+  getTypes: (chart_id) =>
+    if chart_id in @pie3
       return "3pie"
+    else if chart_id in @column2
+      return "2column"
     "default"
 
   getCategories:  ->

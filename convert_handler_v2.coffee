@@ -24,13 +24,15 @@ try
     if status is "success"
       #page.includeJs "http://ajax.googleapis.com/ajax/libs/jquery/0.7.2/jquery.min.js", ->
       #if page.injectJs "do.js"
+      #for name,value of params.data
+        #console.log name, value
       getFilename =  (params)->
         page.evaluate (params) ->
           filename = undefined
           svg       = undefined
           $         = window.jQuery
           #for name,value of params.data
-          for name,value of JSON.parse(params.data)
+          for name,value of params.data
             $("input[name='#{name}']").val("#{value}")
 
           $("form").submit()
@@ -40,6 +42,10 @@ try
             chart2 = $("#chart2").highcharts()
             chart3 = $("#chart3").highcharts()
             svg = window.Highcharts.getSVG([chart1,chart2,chart3])
+          else if params.type is '2column'
+            chart1 = $("#chart1").highcharts()
+            chart2 = $("#chart2").highcharts()
+            svg = window.Highcharts.getSVG([chart1,chart2])
           else
             svg = $("#chart").highcharts().getSVG()
 

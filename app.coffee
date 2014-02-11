@@ -45,7 +45,9 @@ app.post "/v2", (req, res)->
     #url: "http://192.168.88.103:8196/export/"
   params = encodeURI(JSON.stringify(vo))
   command = "phantomjs convert_handler_v2.coffee '" + params + "'"
+  console.log "-------------"
   console.log command
+  console.log vo
   exec command, (err, stdout, stderr) ->
     #ret = {}
     #if err || stderr.toString() != ""
