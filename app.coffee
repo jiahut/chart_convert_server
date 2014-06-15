@@ -8,6 +8,8 @@ app.use express.urlencoded()
 app.use express.json()
 app.use express.multipart()
 
+app.use express.static("static")
+
 app.use express.methodOverride()
 
 app.post "/", (req, res)->
@@ -26,6 +28,22 @@ app.post "/", (req, res)->
   params = encodeURI(JSON.stringify(vo))
   command = "phantomjs convert_handler.coffee '" + params + "'"
   console.log command
+  exec command, (err, stdout, stderr) ->
+    res.write stdout.toString()
+    res.end()
+
+app.post "/v3", (req, res)->
+  res.writeHead "200", 'Content-Type': 'text/plain'
+  vo = req.body
+  #vo =
+    #type: 12,
+    #filename: "test111",
+    #url: "http://192.168.88.103:8196/export/"
+  params = encodeURI(JSON.stringify(vo))
+  command = "phantomjs convert_handler_v3.coffee '" + params + "'"
+  console.log "-------------"
+  console.log command
+  console.log vo
   exec command, (err, stdout, stderr) ->
     res.write stdout.toString()
     res.end()
